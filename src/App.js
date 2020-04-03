@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 
 import './App.css';
 import Header from './components/Header/Header';
@@ -13,38 +13,50 @@ import Review from './components/Review/Review';
 import Inventory from './components/Inventory/Inventory';
 import Nofound from './components/Nofound/Nofound';
 import Productdetails from './components/Productdetails/Productdetails';
+import Login from './components/Login/Login';
+import { AuthContextProvider, PrivateRoute } from './components/Login/useAuth';
+import Shipment from './components/Shipment/Shipment';
 
 
 
 
 
 
-function App() {
+function App(props) {
+  const user = {name: 'Modhumia', email: 'modhumiagedumia@gmail.com'}
   return (
     <div>
-      <Header></Header>
-      <Router>
-        <Switch>
-          <Route path="/shop">
-            <Shop></Shop>
-          </Route>
-          <Route path="/review">
-            <Review></Review>
-          </Route>
-          <Route path="/inventory">
-            <Inventory></Inventory>
-          </Route>
-          <Route exact path="/">
-            <Shop></Shop>
-          </Route>
-          <Route path="/product/:productKey">
-            <Productdetails></Productdetails>
-          </Route>
-          <Route path="*">
-            <Nofound></Nofound>
-          </Route>
-        </Switch>
-      </Router>
+      <AuthContextProvider>
+        <Header></Header>
+        <Router>
+          <Switch>
+            <Route path="/shop">
+              <Shop></Shop>
+            </Route>
+            <Route path="/review">
+              <Review></Review>
+            </Route>
+            <Route path="/inventory">
+              <Inventory></Inventory>
+            </Route>
+            <Route exact path="/">
+              <Shop></Shop>
+            </Route>
+            <Route path="/product/:productKey">
+              <Productdetails></Productdetails>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+            <PrivateRoute path="/shipment">
+              <Shipment></Shipment>
+              </PrivateRoute>
+            <Route path="*">
+              <Nofound></Nofound>
+            </Route>
+          </Switch>
+        </Router>
+        </AuthContextProvider>
 
 
     </div>

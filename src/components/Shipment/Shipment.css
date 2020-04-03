@@ -1,0 +1,17 @@
+.shipment{
+margin: 40px 200px;
+}
+.shipment input{
+    display: block;
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-shadow: 2px 3px 2px black;
+    width: 400px;
+
+}
+.error{
+    color: red;
+    padding: 15px;
+}
